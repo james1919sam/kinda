@@ -1,0 +1,54 @@
+package ;
+
+import static org.junit.Assert.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+public class selenium
+{
+	static WebDriver driver;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		selenium c=new selenium();
+		driver=c.Launch("http://www.google.com");
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);	
+		WebElement objTextBox=driver.findElement(By.xpath("//*[@name=\"q\"]"));
+		objTextBox.sendKeys("Software Testing");
+		objTextBox.submit();
+		System.out.println("waiting");
+		WebDriverWait wait=new WebDriverWait(driver,10);
+		System.out.println("waiting over");
+		wait.until(ExpectedConditions.titleContains("Software Testing"));
+		System.out.println("check");
+
+		System.out.println(driver.getTitle());
+		System.out.println("all test case pass");
+
+		//assertEquals("Software Testing - Google Search",driver.getTitle());
+		driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+		c.Close();
+
+	}
+	public selenium()
+	{
+		System.setProperty("webdriver.chrome.driver","path to the chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		System.out.println("Launching Chrome");
+	}
+	public WebDriver Launch(String url){
+		driver.get(url);
+		System.out.println("Opened URL in Chrome:"+url);
+		return driver;
+		}
+	public void Close()
+	{
+		driver.quit();
+		System.out.println("Closed Chrome");
+	}
+
+}

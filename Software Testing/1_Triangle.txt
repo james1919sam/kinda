@@ -1,0 +1,100 @@
+package "Your package name here"
+public class Triangleclass {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Triangleclass c=new Triangleclass();
+		c.ftringle(2,2,3);
+	}
+	public String ftringle(int a,int b,int c)
+	{
+		
+		boolean c1,c2,c3;
+		char istriangle;
+		do
+		{
+
+		System.out.println("\n enter 3 integers which are sides of the triangle\n"); 
+		System.out.println(a+b+c);
+		c1 = (a>=1) && (a<=10);
+		c2= (b>=1)&& (b<=10);
+		c3= c>=1 && c<=10;
+		if (!c1)
+			System.out.println("\nthe value of a=%d is not the range of permitted value"+a);
+		if (!c2)
+			System.out.println("\nthe value of b=%d is not the range of permitted value"+b);
+		if (!c3)
+
+			System.out.println("\nthe value of c=%d is not the range of permitted value"+c);
+		} while(!c1 && !c2 && !c3);
+
+		// to check is it a triangle or not
+
+		if( a<b+c && b<a+c && c<a+b )
+		istriangle='y';
+		else
+		istriangle ='n';
+		if (istriangle=='y')
+		{
+		if ((a==b) && (b==c))
+		{
+			System.out.println("equilateral triangle\n");     
+			return("equilateral");
+		}
+		else if ((a!=b) && (a!=c) && (b!=c))
+		{
+			System.out.println("scalene triangle\n");
+			return("scalene");
+		}
+		else
+		{
+			System.out.println("isosceles triangle\n");
+			return("isosceles");
+		}}
+		else {
+			
+		System.out.println("Not a triangle\n");
+		}
+		return("not triangle");
+	
+	}}
+
+								JUnit:
+
+
+
+
+package "Your package name here"
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class triangletest {
+
+@Test
+public void test1() 
+{
+ Triangleclass c=new Triangleclass();
+String expectedvalue="scalene";
+String actualvalue=c.ftringle(3,4,5);	
+assertEquals(expectedvalue,actualvalue);
+}
+@Test
+public void test2() 
+{
+    
+Triangleclass c=new Triangleclass();
+String expectedvalue="equilateral";
+String actualvalue=c.ftringle(1,1,1);	
+assertEquals(expectedvalue,actualvalue);
+		
+}
+@Test
+public void test3() 
+{
+    
+Triangleclass c=new Triangleclass();
+String expectedvalue="isosceles";
+String actualvalue=c.ftringle(5,5,1);	
+assertEquals(expectedvalue,actualvalue);
+		
+}} 

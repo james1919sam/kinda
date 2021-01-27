@@ -1,0 +1,63 @@
+package ;
+import java.util.Scanner;
+public class Matrix_Mult {
+    public static void main(String args[])
+    {
+        int ma, na, mb, nb;
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the size of matrix A: ");
+        ma = input.nextInt();
+        na = input.nextInt();
+        System.out.print("Enter the size of matrix B: ");
+        mb = input.nextInt();
+        nb= input.nextInt();
+        if(na==mb)
+        {
+            int[][] a = new int[ma][na];
+            int[][] b = new int[mb][nb];
+            int[][] c = new int[ma][nb];
+            System.out.print("\nEnter the elements of matrix A, row wise:\n");
+            for (int i = 0; i < ma; i++)
+                for (int j = 0; j < na; j++)
+                    a[i][j] = input.nextInt();
+            System.out.print("\nEnter the elements of martix B, row wise:\n");
+            for (int i = 0; i < mb; i++)
+                for (int j = 0; j < nb; j++)
+                    b[i][j] = input.nextInt();
+            System.out.println("\n\nMultiplying both the matrices...\n");
+            for (int i = 0; i < ma; i++)
+                for (int j = 0; j < nb; j++)
+                {
+            	    c[i][j]=0;
+                    for (int k = 0; k < na; k++)
+                        c[i][j] = c[i][j] + a[i][k] * b[k][j];
+                }
+            System.out.println("\nProduct:\n\n");
+            for (int i = 0; i < ma; i++)
+            {
+                for (int j = 0; j < nb; j++)
+                    System.out.print(c[i][j] + " ");
+                System.out.println();
+            }
+            input.close();
+        }
+        else
+    	    System.out.println("\nMatrix Multiplication Not Possible");
+    }
+}
+
+
+										JUnit:
+
+
+
+package ;
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class mult_test{
+	@Test
+	public void test() {
+		Matrix_Mult n=new Matrix_Mult();
+		n.main(null);
+	}
+}
